@@ -13,6 +13,7 @@ const Bootcamp = require('../models/Bootcamp');
 
 // Include other resource routers
 const courseRouter = require('./courses');
+const reviewRouter = require('./reviews');
 
 const router = express.Router();
 
@@ -20,7 +21,9 @@ const advancedResults = require('../middleware/advancedResults');
 const { protect, authorize } = require('../middleware/auth');
 
 // Re-route into other resource routers
+// Anything that comes in through the first param, gets forwarded to second param
 router.use('/:bootcampId/courses', courseRouter);
+router.use('/:bootcampId/reviews', reviewRouter);
 
 router
   .route('/')
